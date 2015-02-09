@@ -1,6 +1,6 @@
 Global $atkTH[5]
 For $i = 0 To 4
-   $atkTH[0] = @ScriptDir & "\images\TH\" & $i+6 & ".bmp"
+   $atkTH[$i] = @ScriptDir & "\images\TH\" & $i+6 & ".bmp"
 Next
 Global $Tolerance1 = 80
 

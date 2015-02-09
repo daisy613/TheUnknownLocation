@@ -142,19 +142,6 @@ Func Train()
 					$CurGoblin -= Number(getOther(171 + 107 * 3, 278, "Trophy"))
 					$ArmyComp += Number(getOther(171 + 107 * 3, 278, "Trophy"))
 				EndIf
-				If GUICtrlRead($txtBarbarians) <> "0" And $CurBarb > 0 Then
-					For $x = 0 To 1
-						_CaptureRegion()
-						If _ColorCheck(_GetPixelColor(369, 366), Hex(0x39D8E0, 6), 20) And $CurBarb > 0 Then
-							TrainIt($eBarbarian, Round($CurBarb/2))
-							_CaptureRegion()
-						Else
-							ExitLoop
-						EndIf
-					Next
-					$CurBarb -= Number(getOther(171 + 107 * 0, 278, "Trophy"))
-					$ArmyComp += Number(getOther(171 + 107 * 0, 278, "Trophy"))
-				EndIf
 				If GUICtrlRead($txtArchers) <> "0" And $CurArch > 0 Then
 					For $x = 0 To 1
 						_CaptureRegion()
@@ -167,6 +154,19 @@ Func Train()
 					Next
 					$CurArch -= Number(getOther(171 + 107 * 1, 278, "Trophy"))
 					$ArmyComp += Number(getOther(171 + 107 * 1, 278, "Trophy"))
+			    EndIf
+				If GUICtrlRead($txtBarbarians) <> "0" And $CurBarb > 0 Then
+					For $x = 0 To 1
+						_CaptureRegion()
+						If _ColorCheck(_GetPixelColor(369, 366), Hex(0x39D8E0, 6), 20) And $CurBarb > 0 Then
+							TrainIt($eBarbarian, Round($CurBarb/2))
+							_CaptureRegion()
+						Else
+							ExitLoop
+						EndIf
+					Next
+					$CurBarb -= Number(getOther(171 + 107 * 0, 278, "Trophy"))
+					$ArmyComp += Number(getOther(171 + 107 * 0, 278, "Trophy"))
 				EndIf
 			EndIf
 		EndIf
