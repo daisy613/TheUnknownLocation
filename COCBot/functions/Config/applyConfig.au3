@@ -67,15 +67,9 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 	Switch $iradAttackMode
 		Case 0
 			GUICtrlSetState($radDeadBases, $GUI_CHECKED)
-			GUICtrlSetState($radWeakBases, $GUI_UNCHECKED)
-			GUICtrlSetState($radAllBases, $GUI_UNCHECKED)
 		Case 1
-			GUICtrlSetState($radDeadBases, $GUI_UNCHECKED)
 			GUICtrlSetState($radWeakBases, $GUI_CHECKED)
-			GUICtrlSetState($radAllBases, $GUI_UNCHECKED)
 		Case 2
-			GUICtrlSetState($radDeadBases, $GUI_UNCHECKED)
-			GUICtrlSetState($radWeakBases, $GUI_UNCHECKED)
 			GUICtrlSetState($radAllBases, $GUI_CHECKED)
 	EndSwitch
 
@@ -176,12 +170,25 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 	_GUICtrlComboBox_SetCurSel($cmbBarrack4, $barrackTroop[3])
 
 	;Other Settings--------------------------------------------------------------------------
+	;Walls
 	If $ichkWalls = 1 Then
 		GUICtrlSetState($chkWalls, $GUI_CHECKED)
 	Else
 		GUICtrlSetState($chkWalls, $GUI_UNCHECKED)
 	EndIf
 	_GUICtrlComboBox_SetCurSel($cmbWalls, $icmbWalls)
+
+	Switch $iUseStorage
+		Case 0
+			GUICtrlSetState($UseGold, $GUI_CHECKED)
+		Case 1
+			GUICtrlSetState($UseElixir, $GUI_CHECKED)
+		Case 2
+			GUICtrlSetState($UseGoldElix, $GUI_CHECKED)
+    EndSwitch
+
+	GUICtrlSetData($txtWallMinGold, $itxtWallMinGold)
+	GUICtrlSetData($txtWallMinElixir, $itxtWallMinElixir)
 
 	;General Settings--------------------------------------------------------------------------
 	If $frmBotPosX <> -32000 Then WinMove($sBotTitle, "", $frmBotPosX, $frmBotPosY)

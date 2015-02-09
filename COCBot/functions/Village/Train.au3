@@ -116,7 +116,7 @@ Func Train()
 					$CurBarb = Round($CurBarb)+1
 					$CurGoblin = ($icmbTroopCap-(GUICtrlRead($txtNumGiants)*5)-(GUICtrlRead($txtNumWallbreakers)*2))*GUICtrlRead($txtGoblins)/100
 					$CurGoblin = Round($CurGoblin)+1
-				EndIf
+				 EndIf
 				If GUICtrlRead($txtNumGiants) <> "0" And $CurGiant > 0 Then
 					_CaptureRegion()
 					If _ColorCheck(_GetPixelColor(475, 366), Hex(0x3DD8E0, 6), 20) And $CurGiant > 0 Then TrainIt($eGiant, $CurGiant)

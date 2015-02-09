@@ -19,12 +19,21 @@ Func DropOnEdge($troop, $edge, $number, $slotsPerEdge = 0, $edge2 = -1, $x = -1)
    If $slotsPerEdge = 0 Or $number < $slotsPerEdge Then $slotsPerEdge = $number
    If $number = 1 Or $slotsPerEdge = 1 Then ; Drop on a single point per edge => on the middle
 	  Click($edge[2][0], $edge[2][1], $number)
+	  If $edge2 <> -1 Then Click($edge2[2][0], $edge2[2][1], $number)
 	  If _Sleep(50) Then Return
 	  ElseIf $slotsPerEdge = 2 Then ; Drop on 2 points per edge
 		 Local $half = Ceiling($number/2)
 		 Click($edge[1][0], $edge[1][1], $half)
+		 If $edge2 <> -1 Then
+			If _Sleep(50) Then Return
+			Click($edge2[1][0], $edge2[1][1], $half)
+		 EndIf
 		 If _Sleep(50) Then Return
 		 Click($edge[3][0], $edge[3][1], $number  - $half)
+		 If $edge2 <> -1 Then
+			If _Sleep(50) Then Return
+			Click($edge2[3][0], $edge2[3][1], $number  - $half)
+		 EndIf
 		 If _Sleep(50) Then Return
    Else
 	    Local $minX = $edge[0][0]
@@ -42,14 +51,14 @@ Func DropOnEdge($troop, $edge, $number, $slotsPerEdge = 0, $edge2 = -1, $x = -1)
 			Local $nbtroopPerSlot = Round($nbTroopsLeft/($slotsPerEdge - $i)) ; progressively adapt the number of drops to fill at the best
 	  		Local $posX = $minX + (($maxX - $minX) * $i) / ($slotsPerEdge - 1)
 			Local $posY = $minY + (($maxY - $minY) * $i) / ($slotsPerEdge - 1)
-			Click($posX, $posY, $nbtroopPerSlot, 1)
+			Click($posX, $posY, $nbtroopPerSlot)
 			If $edge2 <> -1 Then ; for 2, 3 and 4 sides attack use 2x dropping
 			   Local $posX2 = $maxX2 - (($maxX2 - $minX2) * $i) / ($slotsPerEdge - 1)
 			   Local $posY2 = $maxY2 - (($maxY2 - $minY2) * $i) / ($slotsPerEdge - 1)
 			   If $x = 0 Then
 				  If _Sleep(50) Then Return ; add delay for first wave attack to prevent skip dropping troops, must add for 4 sides attack
 			   EndIf
-			   Click($posX2, $posY2, $nbtroopPerSlot, 1)
+			   Click($posX2, $posY2, $nbtroopPerSlot)
 			   $nbTroopsLeft -= $nbtroopPerSlot
 			Else
 			   $nbTroopsLeft -= $nbtroopPerSlot
@@ -186,11 +195,15 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
          ; ================================================================================?
 
 
-		 dropHeroes($BottomRight[3][0], $BottomRight[3][1], $King, $Queen)
+		 Local $RandomEdge = $Edges[Round(Random(0, 3))]
+		 Local $RandomXY = Round(Random(0, 4))
+		 dropHeroes($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], $King, $Queen)
 
 		 If _Sleep(1000) Then Return
 
-		 dropCC($BottomRight[3][0], $BottomRight[3][1], $CC)
+		 $RandomEdge = $Edges[Round(Random(0, 3))]
+		 $RandomXY = Round(Random(0, 4))
+		 dropCC($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], $CC)
 
 		If _Sleep(100) Then Return
 		SetLog("Dropping left over troops", $COLOR_BLUE)

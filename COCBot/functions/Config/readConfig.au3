@@ -18,6 +18,7 @@ Func readConfig() ;Reads config and sets it to the variables
 
 		$TakeLootSnapShot = IniRead($config, "search", "TakeLootSnapShot", "0")
 		$TakeAllTownSnapShot = IniRead($config, "search", "TakeAllTownSnapShot", "0")
+
 		;Attack Settings-------------------------------------------------------------------------
 		$deploySettings = IniRead($config, "attack", "deploy", "0")
 		$icmbAlgorithm = IniRead($config, "attack", "algorithm", "0")
@@ -31,6 +32,7 @@ Func readConfig() ;Reads config and sets it to the variables
 
 		$checkUseClanCastle = IniRead($config, "attack", "use-cc", "0")
 		$chkATH = IniRead($config, "attack", "townhall", "0")
+
 		;Donate Settings-------------------------------------------------------------------------
 		$CCPos[0] = IniRead($config, "donate", "xCCPos", "0")
 		$CCPos[1] = IniRead($config, "donate", "yCCPos", "0")
@@ -63,29 +65,35 @@ Func readConfig() ;Reads config and sets it to the variables
 			$barrackPos[$i][0] = IniRead($config, "troop", "xBarrack" & $i + 1, "0")
 			$barrackPos[$i][1] = IniRead($config, "troop", "yBarrack" & $i + 1, "0")
 			$barrackTroop[$i] = IniRead($config, "troop", "troop" & $i + 1, "0")
-		 Next
+		Next
 
 		;Other Settings--------------------------------------------------------------------------
-	    $ichkWalls = IniRead($config, "other", "auto-wall", "0")
-	    $icmbWalls = IniRead($config, "other", "walllvl", "0")
+		;Walls
+		$ichkWalls = IniRead($config, "other", "auto-wall", "0")
+		$icmbWalls = IniRead($config, "other", "walllvl", "0")
+		$iUseStorage = IniRead($config, "other", "use-storage", "0")
+		$itxtWallMinGold = IniRead($config, "other", "minwallgold", "0")
+		$itxtWallMinElixir = IniRead($config, "other", "minwallelixir", "0")
+
+		;General Settings--------------------------------------------------------------------------
+		$frmBotPosX = IniRead($config, "general", "frmBotPosX", "207")
+		$frmBotPosY = IniRead($config, "general", "frmBotPosY", "158")
+		$itxtMaxTrophy = IniRead($config, "general", "MaxTrophy", "3000")
+		$ichkBackground = IniRead($config, "general", "Background", "0")
+		$ichkBotStop = IniRead($config, "general", "BotStop", "0")
+		$icmbBotCommand = IniRead($config, "general", "Command", "0")
+		$icmbBotCond = IniRead($config, "general", "Cond", "0")
+
+		For $i = 0 To 16 ;Covers all Collectors
+		   $collectorPos[$i][0] = IniRead($config, "general", "xCollector" & $i + 1, "0")
+		   $collectorPos[$i][1] = IniRead($config, "general", "yCollector" & $i + 1, "0")
+		Next
+
+		;traps Settings
+		$TrapPos[0] = IniRead($config, "general", "xTrap", "-1")
+		$TrapPos[1] = IniRead($config, "general", "yTrap", "-1")
+
 	Else
 		Return False
 	EndIf
-
-	;General Settings--------------------------------------------------------------------------
-	$frmBotPosX = IniRead($config, "general", "frmBotPosX", "207")
-	$frmBotPosY = IniRead($config, "general", "frmBotPosY", "158")
-	$itxtMaxTrophy = IniRead($config, "general", "MaxTrophy", "3000")
-	$ichkBackground = IniRead($config, "general", "Background", "0")
-	$ichkBotStop = IniRead($config, "general", "BotStop", "0")
-	$icmbBotCommand = IniRead($config, "general", "Command", "0")
-	$icmbBotCond = IniRead($config, "general", "Cond", "0")
-
-	For $i = 0 To 16 ;Covers all Collectors
-		$collectorPos[$i][0] = IniRead($config, "general", "xCollector" & $i + 1, "0")
-		$collectorPos[$i][1] = IniRead($config, "general", "yCollector" & $i + 1, "0")
-	 Next
-	 ;traps Settings
-	 $TrapPos[0] = IniRead($config, "general", "xTrap", "-1")
-	 $TrapPos[1] = IniRead($config, "general", "yTrap", "-1")
 EndFunc   ;==>readConfig

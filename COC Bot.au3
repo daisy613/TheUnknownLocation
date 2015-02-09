@@ -3,11 +3,11 @@
 #pragma compile(Icon, "Icons\cocbot.ico")
 #pragma compile(FileDescription, Clash of Clans Bot - A Free/Open Sourced Clash of Clans bot - https://the.bytecode.club)
 #pragma compile(ProductName, Clash of Clans Bot)
-#pragma compile(ProductVersion, 5.5.1.1)
-#pragma compile(FileVersion, 5.5.1.1)
+#pragma compile(ProductVersion, 5.5.2)
+#pragma compile(FileVersion, 5.5.2)
 #pragma compile(LegalCopyright, © The Bytecode Club)
 
-$sBotVersion = "5.5.1.1"
+$sBotVersion = "5.5.2"
 $sBotTitle = "COC Bot v" & $sBotVersion
 
 If _Singleton($sBotTitle, 1) = 0 Then
@@ -113,8 +113,8 @@ Func Idle() ;Sequence that runs until Full Army
 				$fullArmy = False
 			EndIf
 			If $CommandStop = -1 Then
-				If $fullArmy Then ExitLoop
 				DropTrophy()
+				If $fullArmy Then ExitLoop
 				If _Sleep(1000) Then ExitLoop
 			EndIf
 			DonateCC()

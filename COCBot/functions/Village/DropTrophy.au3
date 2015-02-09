@@ -14,7 +14,9 @@ Func DropTrophy()
 			PrepareSearch()
 
 			If _Sleep(5000) Then ExitLoop
-
+			While getGold(51, 66) = "" ; Loops until gold is readable
+			   If _Sleep(1000) Then ExitLoop (2)
+			WEnd
 			Click(34, 310) ;Drop one troop
 
 			If _Sleep(1000) Then ExitLoop

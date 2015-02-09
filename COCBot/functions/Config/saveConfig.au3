@@ -183,6 +183,17 @@ Func saveConfig() ;Saves the controls settings to the config
 	EndIf
 	IniWrite($config, "other", "walllvl", _GUICtrlComboBox_GetCurSel($cmbWalls))
 
+	If GUICtrlRead($UseGold) = $GUI_CHECKED Then
+		IniWrite($config, "other", "use-storage", 0)
+	ElseIf GUICtrlRead($UseElixir) = $GUI_CHECKED Then
+		IniWrite($config, "other", "use-storage", 1)
+	ElseIf GUICtrlRead($UseGoldElix) = $GUI_CHECKED Then
+		IniWrite($config, "other", "use-storage", 2)
+	EndIf
+
+	IniWrite($config, "other", "minwallgold", GUICtrlRead($txtWallMinGold))
+	IniWrite($config, "other", "minwallelixir", GUICtrlRead($txtWallMinElixir))
+
 	;General Settings--------------------------------------------------------------------------
 	Local $frmBotPos = WinGetPos($sBotTitle)
 	IniWrite($config, "general", "frmBotPosX", $frmBotPos[0])
@@ -207,8 +218,9 @@ Func saveConfig() ;Saves the controls settings to the config
 	For $i = 0 To 16 ;Covers all Collectors
 		IniWrite($config, "general", "xCollector" & $i + 1, $collectorPos[$i][0])
 		IniWrite($config, "general", "yCollector" & $i + 1, $collectorPos[$i][1])
-	 Next
-	 ;Traps Settings
-	 IniWrite($config, "general", "xTrap", $TrapPos[0])
+	Next
+
+	;Traps Settings
+	IniWrite($config, "general", "xTrap", $TrapPos[0])
 	IniWrite($config, "general", "yTrap", $TrapPos[1])
 EndFunc   ;==>saveConfig

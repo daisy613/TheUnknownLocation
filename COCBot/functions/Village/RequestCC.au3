@@ -24,6 +24,7 @@ Func RequestCC()
 					EndIf
 					If _Sleep(1000) Then ExitLoop
 					Click(524, 228)
+					If _Sleep(2000) Then ExitLoop
 					;Click(340, 228)
 				Else
 					SetLog("Request's already been made", $COLOR_ORANGE)

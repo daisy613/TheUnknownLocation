@@ -150,6 +150,9 @@ Global $barrackTroop[4] ;Barrack troop set
 ;Other Settings
 Global $ichkWalls
 Global $icmbWalls
+Global $iUseStorage
+Global $itxtWallMinGold
+Global $itxtWallMinElixir
 
 ;General Settings
 Global $botPos[2] ; Position of bot used for Hide function

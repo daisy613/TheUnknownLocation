@@ -1,6 +1,10 @@
 ; There are Commands to Shutdown, Sleep, Halt Attack and Halt Training mode
 
 Func BotCommand()
+    $itxtMaxTrophy = GUICtrlRead($txtMaxTrophy)
+	$icmbBotCond = _GUICtrlComboBox_GetCurSel($cmbBotCond)
+    $icmbBotCommand = _GUICtrlComboBox_GetCurSel($cmbBotCommand)
+
 	If GUICtrlRead($chkBotStop) = $GUI_CHECKED Then
 
 		Local $TrophyCount = getOther(50, 74, "Trophy")
