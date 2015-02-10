@@ -138,7 +138,11 @@ Func DonateBarbs()
 			If _Sleep(500) Then Return
 			Click(237, $DonatePixel[1] - 5, 5, 50)
 			$Donate = True
-			$CurBarb += 5
+			If $CurBarb <= 5 Then
+			   $CurBarb = 5
+			Else
+			   $CurBarb += 5
+			EndIf
 		ElseIf $ichkDonateAllArchers = 1 Then
 			DonateArchers()
 			Return
@@ -147,7 +151,8 @@ Func DonateBarbs()
 			Return
 		EndIf
 		If _Sleep(500) Then Return
-		Click(1, 1, 1, 5000)
+		Click(1, 1)
+		If _Sleep(3000) Then Return
 	Else
 		DonateArchers()
 		Return
@@ -164,7 +169,11 @@ Func DonateArchers()
 			If _Sleep(500) Then Return
 			Click(315, $DonatePixel[1] - 5, 5, 50)
 			$Donate = True
-			$CurArch += 5
+			If $CurArch <= 5 Then
+			   $CurArch = 5
+			Else
+			   $CurArch += 5
+			EndIf
 		ElseIf $ichkDonateAllGiants = 1 Then
 			DonateGiants()
 			Return
@@ -173,7 +182,8 @@ Func DonateArchers()
 			Return
 		EndIf
 		If _Sleep(500) Then Return
-		Click(1, 1, 1, 5000)
+		Click(1, 1)
+		If _Sleep(3000) Then Return
 	Else
 		DonateGiants()
 		Return
@@ -190,15 +200,21 @@ Func DonateGiants()
 			If _Sleep(500) = True Then Return
 			Click(480, $DonatePixel[1] - 5, 5, 50)
 			$Donate = True
-			$CurGiant += 5
+			If $CurGiant <= 5 Then
+			   $CurGiant = 5
+			Else
+			   $CurGiant += 5
+			EndIf
 		Else
 			SetLog("No troops available for donation, donating later...", $COLOR_ORANGE)
 		EndIf
 		If _Sleep(500) Then Return
-		Click(1, 1, 1, 5000)
+		Click(1, 1)
+		If _Sleep(3000) Then Return
 	Else
 		SetLog("No troops available for donation, donating later...", $COLOR_ORANGE)
 		If _Sleep(500) Then Return
-		Click(1, 1, 1, 5000)
+		Click(1, 1)
+		If _Sleep(3000) Then Return
 	EndIf
 EndFunc   ;==>DonateGiants

@@ -41,6 +41,7 @@ Func UpgradeWall()
 EndFunc
 
 Func WallCurrentStorage()
+    SetLog("Upgrading Walls..")
 	If GUICtrlRead($UseGold) = $GUI_CHECKED Then
 		$iUseStorage = 0
 	ElseIf GUICtrlRead($UseElixir) = $GUI_CHECKED Then
@@ -62,9 +63,9 @@ Func WallCurrentStorage()
 			$txtUse = "Elixir"
 			Return True
 		ElseIf $iUseStorage = 2 Then
-			SetLog("Elixir is lower than Min. Elixir condition, Using Gold...", $COLOR_BLUE)
+			SetLog("Elixir is lower than Min. Elixir condition, Using Gold...")
 		Else
-			SetLog("Elixir is lower than Min. Elixir condition, upgrading later...", $COLOR_BLUE)
+			SetLog("Elixir is lower than Min. Elixir condition, upgrading later...", $COLOR_ORANGE)
 			Return False
 		EndIf
 	EndIf
