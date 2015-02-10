@@ -48,7 +48,6 @@
 #include "functions\Read Text\getOther.au3"
 #include "functions\Read Text\getTrophy.au3"
 #include "functions\Read Text\getString.au3"
-#include "functions\Read Text\getStorage.au3"
 
 #include "functions\Search\checkNextButton.au3"
 #include "functions\Search\CompareResources.au3"
@@ -72,3 +71,4 @@
 #include "functions\Village\RequestCC.au3"
 #include "functions\Village\Train.au3"
 #include "functions\Village\UpgradeWall.au3"
+#include "functions\Village\VillageReport.au3"

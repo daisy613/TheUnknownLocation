@@ -214,6 +214,7 @@ Func saveConfig() ;Saves the controls settings to the config
 
 	IniWrite($config, "general", "Command", _GUICtrlComboBox_GetCurSel($cmbBotCommand))
 	IniWrite($config, "general", "Cond", _GUICtrlComboBox_GetCurSel($cmbBotCond))
+	IniWrite($config, "general", "Hour", _GUICtrlComboBox_GetCurSel($cmbHoursStop))
 
 	For $i = 0 To 16 ;Covers all Collectors
 		IniWrite($config, "general", "xCollector" & $i + 1, $collectorPos[$i][0])

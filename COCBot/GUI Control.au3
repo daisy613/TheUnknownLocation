@@ -28,6 +28,14 @@ Func GUIControl($hWind, $iMsg, $wParam, $lParam)
 					chkRequest()
 				Case $tabMain
 					tabMain()
+				Case $cmbBotCond
+					If _GUICtrlComboBox_GetCurSel($cmbBotCond) = 13 Then
+						If _GUICtrlComboBox_GetCurSel($cmbHoursStop) = 0 Then _GUICtrlComboBox_SetCurSel($cmbHoursStop, 1)
+						GUICtrlSetState($cmbHoursStop, $GUI_ENABLE)
+					 Else
+						_GUICtrlComboBox_SetCurSel($cmbHoursStop, 0)
+						GUICtrlSetState($cmbHoursStop, $GUI_DISABLE)
+				    EndIf
 			EndSwitch
 		Case 274
 			Switch $wParam
@@ -81,6 +89,8 @@ Func btnStart()
 					 MsgBox(0, "", "Don't Forget to Set Your Troops Capacity in Troops Tab!!")
 					 btnStop()
 				  EndIf
+				  _CaptureRegion()
+				  SetLog(getString(159))
 				runBot()
 			EndIf
 		Else

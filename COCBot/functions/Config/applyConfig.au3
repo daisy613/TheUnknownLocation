@@ -208,4 +208,5 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 	EndIf
 	_GUICtrlComboBox_SetCurSel($cmbBotCommand, $icmbBotCommand)
 	_GUICtrlComboBox_SetCurSel($cmbBotCond, $icmbBotCond)
+	_GUICtrlComboBox_SetCurSel($cmbHoursStop, $icmbHoursStop)
 EndFunc   ;==>applyConfig

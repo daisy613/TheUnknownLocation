@@ -163,11 +163,20 @@ Global $Hide = False ; If hidden or not
 Global $ichkBotStop
 Global $icmbBotCommand
 Global $icmbBotCond
+Global $icmbHoursStop
 Global $CommandStop = -1
 Global $MeetCondStop = False
+Global $UseTimeStop = -1
+Global $SetStartTimeStop = -1
+Global $TimeToStop = -1
 
 Global $itxtMaxTrophy ; Max trophy before drop trophy
 Global $ichkBackground ; Background mode enabled disabled
 Global $collectorPos[17][2] ;Positions of each collectors
 
 Global $break = @ScriptDir & "\images\break.bmp"
+
+Global $GoldCount
+Global $ElixirCount
+Global $DarkCount
+Global $GemCount

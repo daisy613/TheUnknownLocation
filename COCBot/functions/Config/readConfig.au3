@@ -83,13 +83,14 @@ Func readConfig() ;Reads config and sets it to the variables
 		$ichkBotStop = IniRead($config, "general", "BotStop", "0")
 		$icmbBotCommand = IniRead($config, "general", "Command", "0")
 		$icmbBotCond = IniRead($config, "general", "Cond", "0")
+		$icmbHoursStop = IniRead($config, "general", "Hour", "0")
 
 		For $i = 0 To 16 ;Covers all Collectors
 		   $collectorPos[$i][0] = IniRead($config, "general", "xCollector" & $i + 1, "0")
 		   $collectorPos[$i][1] = IniRead($config, "general", "yCollector" & $i + 1, "0")
 		Next
 
-		;traps Settings
+		;Traps Settings---------------------------------------------------------------------------
 		$TrapPos[0] = IniRead($config, "general", "xTrap", "-1")
 		$TrapPos[1] = IniRead($config, "general", "yTrap", "-1")
 

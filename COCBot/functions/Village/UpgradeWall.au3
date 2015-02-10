@@ -41,6 +41,7 @@ Func UpgradeWall()
 EndFunc
 
 Func WallCurrentStorage()
+    VillageReport()
     SetLog("Upgrading Walls..")
 	If GUICtrlRead($UseGold) = $GUI_CHECKED Then
 		$iUseStorage = 0
@@ -51,13 +52,10 @@ Func WallCurrentStorage()
 	EndIf
 	$itxtWallMinGold = GUICtrlRead($txtWallMinGold)
 	$itxtWallMinElixir = GUICtrlRead($txtWallMinElixir)
-	Local $VillageGold = getStorage(700, 24)
-	Local $VillageElixir = getStorage(700, 75)
-	Local $MinWallGold = Number($VillageGold) > Number($itxtWallMinGold)
-	Local $MinWallElixir = Number($VillageElixir) > Number($itxtWallMinElixir)
+	Local $MinWallGold = Number($GoldCount) > Number($itxtWallMinGold)
+	Local $MinWallElixir = Number($ElixirCount) > Number($itxtWallMinElixir)
 
 	If $iUseStorage = 1 Or $iUseStorage = 2 Then
-		SetLog("Current Elixir : " & $VillageElixir, $COLOR_GREEN)
 		If $MinWallElixir Then
 			SetLog("Upgrading Walls Using Elixir", $COLOR_BLUE)
 			$txtUse = "Elixir"
@@ -70,7 +68,6 @@ Func WallCurrentStorage()
 		EndIf
 	EndIf
 	If $iUseStorage = 0 Or $iUseStorage = 2 Then
-		SetLog("Current Gold : " & $VillageGold, $COLOR_GREEN)
 		If $MinWallGold Then
 			SetLog("Upgrading Walls Using Gold...", $COLOR_BLUE)
 			$txtUse = "Gold"
