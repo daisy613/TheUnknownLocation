@@ -85,6 +85,7 @@ Func DonateCC()
 						 DonateGiants()
 				 EndSelect
 			  EndIf
+			$Donate = True
 			$y = $DonatePixel[1] + 10
 		 EndIf
 		 $DonatePixel = _MultiPixelSearch(202, $y, 203, 670, 1, 1, Hex(0x262926, 6), $offColors, 20)

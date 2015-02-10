@@ -75,7 +75,7 @@ Func runBot() ;Bot that runs everything in order
 		DonateCC()
 		If _Sleep(1000) Then Return
 		Collect()
-		If _Sleep(1000) Then Return
+		If _Sleep(2000) Then Return
 		UpgradeWall()
 		If _Sleep(1000) Then Return
 		Idle()

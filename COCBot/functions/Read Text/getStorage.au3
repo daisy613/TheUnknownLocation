@@ -5,43 +5,43 @@ Func getStorage($x_start, $y_start)
 	;-----------------------------------------------------------------------------
 	Local $x = $x_start, $y = $y_start
 	Local $Number, $Number2, $i = 0
-   $Number = getDigit($x, $y, "Storage")
+	$Number = getDigit($x, $y, "Storage")
 
-   While $Number = ""
-	   If $i >= 26 Then ExitLoop
-	   $i += 1
-	   $x += 1
-	   $Number = getDigit($x, $y, "Storage")
-   WEnd
-   If $Number <> "" Then
-	  $x += 4
-	  $Number &= getDigit($x, $y, "Storage")
-	  $Number &= getDigit($x, $y, "Storage")
-	  $Number &= getDigit($x, $y, "Storage")
-   Else
-	  $i = 0
-	  While $Number = ""
-		  If $i >= 68 Then ExitLoop
-		  $i += 1
-		  $x += 1
-		  $Number = getDigit($x, $y, "Storage")
-	  WEnd
-	  If $Number <> "" Then
-		 $Number &= getDigit($x, $y, "Storage")
-		 $Number &= getDigit($x, $y, "Storage")
-	  EndIf
-   EndIf
+	While $Number = ""
+		If $i >= 26 Then ExitLoop
+		$i += 1
+		$x += 1
+		$Number = getDigit($x, $y, "Storage")
+	WEnd
+	If $Number <> "" Then
+		$x += 4
+		$Number &= getDigit($x, $y, "Storage")
+		$Number &= getDigit($x, $y, "Storage")
+		$Number &= getDigit($x, $y, "Storage")
+	Else
+		$i = 0
+		While $Number = ""
+			If $i >= 64 Then ExitLoop
+			$i += 1
+			$x += 1
+			$Number = getDigit($x, $y, "Storage")
+		WEnd
+		If $Number <> "" Then
+			$Number &= getDigit($x, $y, "Storage")
+			$Number &= getDigit($x, $y, "Storage")
+		EndIf
+	EndIf
 
-   If $Number <> "" Then $x += 3
-   $i = 0
-   While $Number2 = ""
-	   If $i >= 99 Then ExitLoop
-	   $i += 1
-	   $x += 1
-	   $Number2 = getDigit($x, $y, "Storage")
-   WEnd
-   $Number2 &= getDigit($x, $y, "Storage")
-   $Number2 &= getDigit($x, $y, "Storage")
-   Return $Number & $Number2
+	If $Number Then $x += 3
+	$i = 0
+	While $Number2 = ""
+		If $i >= 99 Then ExitLoop
+		$i += 1
+		$x += 1
+		$Number2 = getDigit($x, $y, "Storage")
+	WEnd
+	$Number2 &= getDigit($x, $y, "Storage")
+	$Number2 &= getDigit($x, $y, "Storage")
+	Return $Number & $Number2
 EndFunc   ;==>getStorage
 

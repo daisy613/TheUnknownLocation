@@ -17,7 +17,7 @@ Func getDigit(ByRef $x, $y, $type)
 		Case $type = "DarkElixir"
 			Local $c1 = Hex(0x909090, 6), $c2 = Hex(0x363636, 6), $c3 = Hex(0x262626, 6)
 		Case $type = "Storage"
-			Local $c1 = Hex(0x303030, 6), $c2 = Hex(0xDDDDDD, 6), $c3 = Hex(0x1A1500, 6)
+			Local $c1 = Hex(0x484848, 6), $c2 = Hex(0x2C072D, 6), $c3 = Hex(0x020202, 6)
 		Case Else
 			Local $c1 = Hex(0x979797, 6), $c2 = Hex(0x393939, 6), $c3 = Hex(0x272727, 6)
     EndSelect
@@ -43,6 +43,31 @@ Func getDigit(ByRef $x, $y, $type)
 		EndIf
 	 EndIf
 
+	If $type = "Storage" Then
+		Local $c1 = Hex(0x303030, 6), $c2 = Hex(0xDDDDDD, 6), $c3 = Hex(0x1A1500, 6)
+		Local $pixel1[3] = [$x + 6, $y + 4, $c1], $pixel2[3] = [$x + 7, $y + 7, $c2], $pixel3[3] = [$x + 10, $y + 13, $c3]
+		If boolPixelSearch($pixel1, $pixel2, $pixel3) Then
+			$x += $width ;Adds to x coordinate to get the next digit
+			Return 0
+		Else
+			$x -= 1 ;Solves the problem when the spaces between the middle goes from 6 to 5 pixels
+			Local $pixel1[3] = [$x + 6, $y + 4, $c1], $pixel2[3] = [$x + 7, $y + 7, $c2], $pixel3[3] = [$x + 10, $y + 13, $c3]
+			If boolPixelSearch($pixel1, $pixel2, $pixel3) Then
+				$x += $width ;Changes x coordinate for the next digit.
+				Return 0
+			Else
+				$x += 2 ;Solves the problem when there is 1 pixel space between a set of numbers
+				Local $pixel1[3] = [$x + 6, $y + 4, $c1], $pixel2[3] = [$x + 7, $y + 7, $c2], $pixel3[3] = [$x + 10, $y + 13, $c3]
+				If boolPixelSearch($pixel1, $pixel2, $pixel3) Then
+					$x += $width
+					Return 0
+				Else
+					$x -= 1
+				EndIf
+			EndIf
+		EndIf
+	EndIf
+
 	;Search for digit 1
 	$width = 6
 	Select
@@ -56,7 +81,7 @@ Func getDigit(ByRef $x, $y, $type)
 			Local $c1 = Hex(0xB7B7B7, 6), $c2 = Hex(0x030203, 6), $c3 = Hex(0x040404, 6)
 		Case Else
 			Local $c1 = Hex(0x969696, 6), $c2 = Hex(0x313131, 6), $c3 = Hex(0xD8D8D8, 6)
-		 EndSelect
+	EndSelect
 	Local $pixel1[3] = [$x + 1, $y + 1, $c1], $pixel2[3] = [$x + 1, $y + 12, $c2], $pixel3[3] = [$x + 4, $y + 12, $c3]
 	If boolPixelSearch($pixel1, $pixel2, $pixel3) Then
 		$x += $width
@@ -90,10 +115,10 @@ Func getDigit(ByRef $x, $y, $type)
 			Local $c1 = Hex(0x989898, 6), $c2 = Hex(0xCDCDCD, 6), $c3 = Hex(0x909090, 6)
 		Case $type = "Storage"
 			Local $c1 = Hex(0xF9F9F9, 6), $c2 = Hex(0xFBFBFB, 6), $c3 = Hex(0x050505, 6)
-			$width = 9
+			$width -= 1
 		Case Else
 			Local $c1 = Hex(0xA0A0A0, 6), $c2 = Hex(0xD8D8D8, 6), $c3 = Hex(0x979797, 6)
-		 EndSelect
+	EndSelect
 	Local $pixel1[3] = [$x + 1, $y + 7, $c1], $pixel2[3] = [$x + 3, $y + 6, $c2], $pixel3[3] = [$x + 7, $y + 7, $c3]
 	If boolPixelSearch($pixel1, $pixel2, $pixel3) Then
 		$x += $width
@@ -126,10 +151,10 @@ Func getDigit(ByRef $x, $y, $type)
 		Case $type = "DarkElixir"
 			Local $c1 = Hex(0x797979, 6), $c2 = Hex(0x070707, 6), $c3 = Hex(0x343434, 6)
 		Case $type = "Storage"
-			Local $c1 = Hex(0x3E3E3E, 6), $c2 = Hex(0x030303, 6), $c3 = Hex(0x010101, 6)
+			Local $c1 = Hex(0x3E3E3E, 6), $c2 = Hex(0x020202, 6), $c3 = Hex(0x020202, 6)
 		Case Else
 			Local $c1 = Hex(0x7F7F7F, 6), $c2 = Hex(0x070707, 6), $c3 = Hex(0x373737, 6)
-		 EndSelect
+	EndSelect
 	Local $pixel1[3] = [$x + 2, $y + 3, $c1], $pixel2[3] = [$x + 4, $y + 8, $c2], $pixel3[3] = [$x + 5, $y + 13, $c3]
 	If boolPixelSearch($pixel1, $pixel2, $pixel3) Then
 		$x += $width
@@ -163,9 +188,10 @@ Func getDigit(ByRef $x, $y, $type)
 			Local $c1 = Hex(0x262626, 6), $c2 = Hex(0x070707, 6), $c3 = Hex(0x3D3D3D, 6)
 		Case $type = "Storage"
 			Local $c1 = Hex(0x888888, 6), $c2 = Hex(0x484848, 6), $c3 = Hex(0x989898, 6)
+			$width -= 1
 		Case Else
 			Local $c1 = Hex(0x282828, 6), $c2 = Hex(0x080808, 6), $c3 = Hex(0x404040, 6)
-		 EndSelect
+	EndSelect
 	Local $pixel1[3] = [$x + 2, $y + 3, $c1], $pixel2[3] = [$x + 3, $y + 1, $c2], $pixel3[3] = [$x + 1, $y + 5, $c3]
 	If boolPixelSearch($pixel1, $pixel2, $pixel3) Then
 		$x += $width
@@ -199,10 +225,9 @@ Func getDigit(ByRef $x, $y, $type)
 			Local $c1 = Hex(0x060606, 6), $c2 = Hex(0x040404, 6), $c3 = Hex(0xAFAFAF, 6)
 		Case $type = "Storage"
 			Local $c1 = Hex(0x030303, 6), $c2 = Hex(0xB0B0B0, 6), $c3 = Hex(0x040404, 6)
-			$width = 9
 		Case Else
 			Local $c1 = Hex(0x060606, 6), $c2 = Hex(0x040404, 6), $c3 = Hex(0xB7B7B7, 6)
-		 EndSelect
+	EndSelect
 	Local $pixel1[3] = [$x + 5, $y + 4, $c1], $pixel2[3] = [$x + 4, $y + 9, $c2], $pixel3[3] = [$x + 6, $y + 12, $c3]
 	If boolPixelSearch($pixel1, $pixel2, $pixel3) Then
 		$x += $width
@@ -236,10 +261,9 @@ Func getDigit(ByRef $x, $y, $type)
 			Local $c1 = Hex(0x060606, 6), $c2 = Hex(0x030303, 6), $c3 = Hex(0x161616, 6)
 		Case $type = "Storage"
 			Local $c1 = Hex(0x040404, 6), $c2 = Hex(0x484848, 6), $c3 = Hex(0x707070, 6)
-			$width = 10
 		Case Else
 			Local $c1 = Hex(0x070707, 6), $c2 = Hex(0x040404, 6), $c3 = Hex(0x181818, 6)
-		 EndSelect
+	EndSelect
 	Local $pixel1[3] = [$x + 5, $y + 4, $c1], $pixel2[3] = [$x + 5, $y + 9, $c2], $pixel3[3] = [$x + 8, $y + 5, $c3]
 	If boolPixelSearch($pixel1, $pixel2, $pixel3) Then
 		$x += $width
@@ -272,10 +296,10 @@ Func getDigit(ByRef $x, $y, $type)
 		Case $type = "DarkElixir"
 			Local $c1 = Hex(0x5A5A5A, 6), $c2 = Hex(0x818181, 6), $c3 = Hex(0x5A5A5A, 6)
 		Case $type = "Storage"
-			Local $c1 = Hex(0x7F7F7F, 6), $c2 = Hex(0x2F2F2F, 6), $c3 = Hex(0x7F7F7F, 6)
+			Local $c1 = Hex(0x7E7E7E, 6), $c2 = Hex(0x2F2F2F, 6), $c3 = Hex(0x7E7E7E, 6)
 		Case Else
 			Local $c1 = Hex(0x5F5F5F, 6), $c2 = Hex(0x878787, 6), $c3 = Hex(0x5F5F5F, 6)
-		 EndSelect
+	EndSelect
 	Local $pixel1[3] = [$x + 5, $y + 11, $c1], $pixel2[3] = [$x + 4, $y + 3, $c2], $pixel3[3] = [$x + 7, $y + 7, $c3]
 	If boolPixelSearch($pixel1, $pixel2, $pixel3) Then
 		$x += $width
@@ -311,7 +335,7 @@ Func getDigit(ByRef $x, $y, $type)
 			Local $c1 = Hex(0x070707, 6), $c2 = Hex(0xF8F8F8, 6), $c3 = Hex(0x242424, 6)
 		Case Else
 			Local $c1 = Hex(0x272727, 6), $c2 = Hex(0x303030, 6), $c3 = Hex(0x262626, 6)
-		 EndSelect
+	EndSelect
 	Local $pixel1[3] = [$x + 5, $y + 3, $c1], $pixel2[3] = [$x + 5, $y + 10, $c2], $pixel3[3] = [$x + 1, $y + 6, $c3]
 	If boolPixelSearch($pixel1, $pixel2, $pixel3) Then
 		$x += $width
@@ -345,10 +369,9 @@ Func getDigit(ByRef $x, $y, $type)
 			Local $c1 = Hex(0x2E2E2E, 6), $c2 = Hex(0x050505, 6), $c3 = Hex(0x262626, 6)
 		Case $type = "Storage"
 			Local $c1 = Hex(0xA0A0A0, 6), $c2 = Hex(0xC0C0C0, 6), $c3 = Hex(0x000000, 6)
-			$width = 10
 		Case Else
 			Local $c1 = Hex(0x303030, 6), $c2 = Hex(0x050505, 6), $c3 = Hex(0x272727, 6)
-		 EndSelect
+	EndSelect
 	Local $pixel1[3] = [$x + 5, $y + 5, $c1], $pixel2[3] = [$x + 5, $y + 9, $c2], $pixel3[3] = [$x + 8, $y + 12, $c3]
 	If boolPixelSearch($pixel1, $pixel2, $pixel3) Then
 		$x += $width
@@ -382,7 +405,7 @@ Func getDigit(ByRef $x, $y, $type)
 			Local $c1 = Hex(0x3F3F3F, 6), $c2 = Hex(0x4A4A4A, 6), $c3 = Hex(0xD1D1D1, 6)
 		Case Else
 			Local $c1 = Hex(0x414141, 6), $c2 = Hex(0x4C4C4C, 6), $c3 = Hex(0xD3D3D3, 6)
-		 EndSelect
+	EndSelect
 	Local $pixel1[3] = [$x + 13, $y + 7, $c1], $pixel2[3] = [$x + 7, $y + 7, $c2], $pixel3[3] = [$x + 1, $y + 12, $c3]
 	If boolPixelSearch($pixel1, $pixel2, $pixel3) Then
 		$x += $width
