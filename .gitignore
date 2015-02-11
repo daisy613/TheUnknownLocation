@@ -1,7 +1,5 @@
 *.ini
 *.log
-*.jpg
-*.png
 *.exe
 *.db
 *.ico
