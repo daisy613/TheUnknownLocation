@@ -89,8 +89,6 @@ Func btnStart()
 					 MsgBox(0, "", "Don't Forget to Set Your Troops Capacity in Troops Tab!!")
 					 btnStop()
 				  EndIf
-				  _CaptureRegion()
-				  SetLog(getString(159))
 				runBot()
 			EndIf
 		Else
