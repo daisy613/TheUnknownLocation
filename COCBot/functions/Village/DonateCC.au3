@@ -25,7 +25,7 @@ Func DonateCC()
 		 Global $DonatePixel = _MultiPixelSearch(202, $y, 203, 670, 1, 1, Hex(0x262926, 6), $offColors, 20)
 		 If IsArray($DonatePixel) Then
 			 $Donate = False
-			 If ($ichkDonateAllBarbarians = 0 And $ichkDonateAllArchers = 0 And $ichkDonateAllGiants = 0) And ($ichkDonateBarbarians = 1 Or $ichkDonateArchers = 1 Or $ichkDonateGiants = 1) Then
+			 If ($ichkDonateBarbarians = 1 Or $ichkDonateArchers = 1 Or $ichkDonateGiants = 1) Then
 				 _CaptureRegion(0, 0, 435, $DonatePixel[1] + 50)
 				 Local $String = getString($DonatePixel[1] - 31)
 				 If $String = "" Or $String = " " Then
@@ -75,7 +75,8 @@ Func DonateCC()
 						 ContinueLoop
 					 EndIf
 				 EndIf
-			 Else
+			  EndIf
+			  If ($ichkDonateAllBarbarians = 1 Or $ichkDonateAllArchers = 1 Or $ichkDonateAllGiants = 1) Then
 				 Select
 					 Case $ichkDonateAllBarbarians = 1
 						 DonateBarbs()

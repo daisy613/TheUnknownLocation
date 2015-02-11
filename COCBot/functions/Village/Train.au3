@@ -133,7 +133,7 @@ Func Train()
 							 _CaptureRegion()
 							 $x -= 1
 							 If $x <= 0 Or $CurGiant <= 0 Then
-								If _Sleep(1000) Then ExitLoop
+								If _Sleep(600) Then ExitLoop
 							    ExitLoop
 							  EndIf
 						 Else
@@ -153,7 +153,7 @@ Func Train()
 							 _CaptureRegion()
 							 $x -= 1
 							 If $x <= 0 Or $CurWB <= 0 Then
-								If _Sleep(1000) Then ExitLoop
+								If _Sleep(600) Then ExitLoop
 							    ExitLoop
 							  EndIf
 						 Else
@@ -173,7 +173,7 @@ Func Train()
 							 _CaptureRegion()
 							 $x -= 1
 							 If $x <= 0 Or $CurGoblin <= 0 Then
-								If _Sleep(1000) Then ExitLoop
+								If _Sleep(600) Then ExitLoop
 							    ExitLoop
 							  EndIf
 						 Else
@@ -193,7 +193,7 @@ Func Train()
 							 _CaptureRegion()
 							 $x -= 1
 							 If $x <= 0 Or $CurArch <= 0 Then
-								If _Sleep(1000) Then ExitLoop
+								If _Sleep(600) Then ExitLoop
 							    ExitLoop
 							  EndIf
 						 Else
@@ -213,7 +213,7 @@ Func Train()
 							 _CaptureRegion()
 							 $x -= 1
 							 If $x <= 0 Or $CurBarb <= 0 Then
-								If _Sleep(1000) Then ExitLoop
+								If _Sleep(600) Then ExitLoop
 							    ExitLoop
 							  EndIf
 						 Else
