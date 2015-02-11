@@ -59,7 +59,7 @@ Global $BSpos[2] ; Inside BlueStacks positions relative to the screen
 ;Search Settings
 Global $searchGold, $searchElixir, $searchDark, $searchTrophy, $searchTH ;Resources of bases when searching
 Global $MinGold, $MinElixir, $MinDark, $MinTrophy, $MaxTH ; Minimum Resources conditions
-Global $chkConditions[6] ;Conditions (meet gold...)
+Global $chkConditions[6], $ichkMeetOne ;Conditions (meet gold...)
 Global $icmbTH
 Global $THLocation
 Global $THx = 0, $THy = 0
@@ -160,15 +160,14 @@ Global $frmBotPosX ; Position X of the GUI
 Global $frmBotPosY ; Position Y of the GUI
 Global $Hide = False ; If hidden or not
 
-Global $ichkBotStop
-Global $icmbBotCommand
-Global $icmbBotCond
-Global $icmbHoursStop
+Global $ichkBotStop, $icmbBotCommand, $icmbBotCond, $icmbHoursStop
 Global $CommandStop = -1
 Global $MeetCondStop = False
 Global $UseTimeStop = -1
 Global $SetStartTimeStop = -1
 Global $TimeToStop = -1
+Global $ichkTrap
+Global $icmbUnitDelay, $icmbWaveDelay
 
 Global $itxtMaxTrophy ; Max trophy before drop trophy
 Global $ichkBackground ; Background mode enabled disabled
@@ -176,7 +175,4 @@ Global $collectorPos[17][2] ;Positions of each collectors
 
 Global $break = @ScriptDir & "\images\break.bmp"
 
-Global $GoldCount
-Global $ElixirCount
-Global $DarkCount
-Global $GemCount
+Global $GoldCount = 0, $ElixirCount = 0, $DarkCount = 0, $GemCount = 0, $BCount = 0

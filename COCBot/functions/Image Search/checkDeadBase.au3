@@ -1,5 +1,10 @@
 Func checkDeadBase()
-	Return ZombieSearch() ; just so it compiles
+    _CaptureRegion()
+	If _ColorCheck(_GetPixelColor(27, 29), Hex(0x5C5E60, 6), 20) Then
+	   Return True
+    Else
+	   Return ZombieSearch() ; just so it compiles
+    EndIf
 EndFunc   ;==>checkDeadBase
 
 ;checkDeadBase Variables:-------------===========================

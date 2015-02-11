@@ -27,7 +27,7 @@ Func DonateCC()
 			 $Donate = False
 			 If ($ichkDonateAllBarbarians = 0 And $ichkDonateAllArchers = 0 And $ichkDonateAllGiants = 0) And ($ichkDonateBarbarians = 1 Or $ichkDonateArchers = 1 Or $ichkDonateGiants = 1) Then
 				 _CaptureRegion(0, 0, 435, $DonatePixel[1] + 50)
-				 Local $String = getString($DonatePixel[1] - 28)
+				 Local $String = getString($DonatePixel[1] - 31)
 				 If $String = "" Then
 					 $String = getString($DonatePixel[1] - 17)
 				 Else
@@ -152,7 +152,7 @@ Func DonateBarbs()
 		EndIf
 		If _Sleep(500) Then Return
 		Click(1, 1)
-		If _Sleep(3000) Then Return
+		If _Sleep(2000) Then Return
 	Else
 		DonateArchers()
 		Return
@@ -183,7 +183,7 @@ Func DonateArchers()
 		EndIf
 		If _Sleep(500) Then Return
 		Click(1, 1)
-		If _Sleep(3000) Then Return
+		If _Sleep(2000) Then Return
 	Else
 		DonateGiants()
 		Return
@@ -210,11 +210,10 @@ Func DonateGiants()
 		EndIf
 		If _Sleep(500) Then Return
 		Click(1, 1)
-		If _Sleep(3000) Then Return
+		If _Sleep(2000) Then Return
 	Else
 		SetLog("No troops available for donation, donating later...", $COLOR_ORANGE)
 		If _Sleep(500) Then Return
 		Click(1, 1)
-		If _Sleep(3000) Then Return
 	EndIf
 EndFunc   ;==>DonateGiants

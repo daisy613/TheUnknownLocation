@@ -15,6 +15,7 @@ Func readConfig() ;Reads config and sets it to the variables
 		$chkConditions[4] = IniRead($config, "search", "conditionTownHall", "0")
 		$chkConditions[5] = IniRead($config, "search", "conditionTownHallO", "0")
 		$icmbTH = IniRead($config, "search", "THLevel", "0")
+		$ichkMeetOne = IniRead($config, "search", "conditionOne", "0")
 
 		$TakeLootSnapShot = IniRead($config, "search", "TakeLootSnapShot", "0")
 		$TakeAllTownSnapShot = IniRead($config, "search", "TakeAllTownSnapShot", "0")
@@ -74,6 +75,11 @@ Func readConfig() ;Reads config and sets it to the variables
 		$iUseStorage = IniRead($config, "other", "use-storage", "0")
 		$itxtWallMinGold = IniRead($config, "other", "minwallgold", "0")
 		$itxtWallMinElixir = IniRead($config, "other", "minwallelixir", "0")
+	    $icmbUnitDelay = IniRead($config, "other", "UnitD", "0")
+	    $icmbWaveDelay = IniRead($config, "other", "WaveD", "0")
+		$ichkTrap = IniRead($config, "other", "chkTrap", "0")
+		$TrapPos[0] = IniRead($config, "other", "xTrap", "-1")
+		$TrapPos[1] = IniRead($config, "other", "yTrap", "-1")
 
 		;General Settings--------------------------------------------------------------------------
 		$frmBotPosX = IniRead($config, "general", "frmBotPosX", "207")
@@ -84,16 +90,12 @@ Func readConfig() ;Reads config and sets it to the variables
 		$icmbBotCommand = IniRead($config, "general", "Command", "0")
 		$icmbBotCond = IniRead($config, "general", "Cond", "0")
 		$icmbHoursStop = IniRead($config, "general", "Hour", "0")
-
+#cs
 		For $i = 0 To 16 ;Covers all Collectors
 		   $collectorPos[$i][0] = IniRead($config, "general", "xCollector" & $i + 1, "0")
 		   $collectorPos[$i][1] = IniRead($config, "general", "yCollector" & $i + 1, "0")
 		Next
-
-		;Traps Settings---------------------------------------------------------------------------
-		$TrapPos[0] = IniRead($config, "general", "xTrap", "-1")
-		$TrapPos[1] = IniRead($config, "general", "yTrap", "-1")
-
+#ce
 	Else
 		Return False
 	EndIf

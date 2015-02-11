@@ -44,6 +44,12 @@ Func saveConfig() ;Saves the controls settings to the config
 		IniWrite($config, "search", "conditionTownHallO", 0)
 	 EndIf
 
+	If GUICtrlRead($chkMeetOne) = $GUI_CHECKED Then
+		IniWrite($config, "search", "conditionOne", 1)
+	Else
+		IniWrite($config, "search", "conditionOne", 0)
+	 EndIf
+
 	If GUICtrlRead($chkTakeLootSS) = $GUI_CHECKED Then
 		IniWrite($config, "search", "TakeLootSnapShot", 1)
 	Else
@@ -193,6 +199,11 @@ Func saveConfig() ;Saves the controls settings to the config
 
 	IniWrite($config, "other", "minwallgold", GUICtrlRead($txtWallMinGold))
 	IniWrite($config, "other", "minwallelixir", GUICtrlRead($txtWallMinElixir))
+	IniWrite($config, "other", "UnitD", _GUICtrlComboBox_GetCurSel($cmbUnitDelay))
+	IniWrite($config, "other", "WaveD", _GUICtrlComboBox_GetCurSel($cmbWaveDelay))
+	IniWrite($config, "other", "chkTrap", GUICtrlRead($chkTrap))
+	IniWrite($config, "other", "xTrap", $TrapPos[0])
+	IniWrite($config, "other", "yTrap", $TrapPos[1])
 
 	;General Settings--------------------------------------------------------------------------
 	Local $frmBotPos = WinGetPos($sBotTitle)
@@ -215,13 +226,10 @@ Func saveConfig() ;Saves the controls settings to the config
 	IniWrite($config, "general", "Command", _GUICtrlComboBox_GetCurSel($cmbBotCommand))
 	IniWrite($config, "general", "Cond", _GUICtrlComboBox_GetCurSel($cmbBotCond))
 	IniWrite($config, "general", "Hour", _GUICtrlComboBox_GetCurSel($cmbHoursStop))
-
+#cs
 	For $i = 0 To 16 ;Covers all Collectors
 		IniWrite($config, "general", "xCollector" & $i + 1, $collectorPos[$i][0])
 		IniWrite($config, "general", "yCollector" & $i + 1, $collectorPos[$i][1])
 	Next
-
-	;Traps Settings
-	IniWrite($config, "general", "xTrap", $TrapPos[0])
-	IniWrite($config, "general", "yTrap", $TrapPos[1])
+#ce
 EndFunc   ;==>saveConfig

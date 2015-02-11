@@ -49,9 +49,6 @@ WEnd
 
 Func runBot() ;Bot that runs everything in order
 	While 1
-		SaveConfig()
-		readConfig()
-		applyConfig()
 		$Restart = False
 		$fullArmy = False
 		$CommandStop = -1
@@ -124,6 +121,9 @@ Func Idle() ;Sequence that runs until Full Army
 EndFunc   ;==>Idle
 
 Func AttackMain() ;Main control for attack functions
+		SaveConfig()
+		readConfig()
+		applyConfig()
 		PrepareSearch()
 	 If _Sleep(1000) Then Return
 		VillageSearch($TakeAllTownSnapShot)

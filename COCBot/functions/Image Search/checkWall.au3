@@ -6,7 +6,7 @@ For $i = 0 To 7
 Next
 
 Global $WallX = 0, $WallY = 0, $WallLoc = 0
-Global $Tolerance2 = 50
+Global $Tolerance2 = 55
 
 Func checkWall()
     If _Sleep(500) Then Return

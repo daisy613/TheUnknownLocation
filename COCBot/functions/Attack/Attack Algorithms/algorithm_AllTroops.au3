@@ -25,16 +25,16 @@ Func DropOnEdge($troop, $edge, $number, $slotsPerEdge = 0, $edge2 = -1, $x = -1)
 		 Local $half = Ceiling($number/2)
 		 Click($edge[1][0], $edge[1][1], $half)
 		 If $edge2 <> -1 Then
-			If _Sleep(50) Then Return
+			If _Sleep($icmbUnitDelay*10) Then Return
 			Click($edge2[1][0], $edge2[1][1], $half)
 		 EndIf
-		 If _Sleep(50) Then Return
+		 If _Sleep($icmbUnitDelay*10) Then Return
 		 Click($edge[3][0], $edge[3][1], $number  - $half)
 		 If $edge2 <> -1 Then
-			If _Sleep(50) Then Return
+			If _Sleep($icmbUnitDelay*10) Then Return
 			Click($edge2[3][0], $edge2[3][1], $number  - $half)
 		 EndIf
-		 If _Sleep(50) Then Return
+		 If _Sleep($icmbUnitDelay*10) Then Return
    Else
 	    Local $minX = $edge[0][0]
 		Local $maxX = $edge[4][0]
@@ -56,14 +56,14 @@ Func DropOnEdge($troop, $edge, $number, $slotsPerEdge = 0, $edge2 = -1, $x = -1)
 			   Local $posX2 = $maxX2 - (($maxX2 - $minX2) * $i) / ($slotsPerEdge - 1)
 			   Local $posY2 = $maxY2 - (($maxY2 - $minY2) * $i) / ($slotsPerEdge - 1)
 			   If $x = 0 Then
-				  If _Sleep(50) Then Return ; add delay for first wave attack to prevent skip dropping troops, must add for 4 sides attack
+				  If _Sleep($icmbUnitDelay*10) Then Return ; add delay for first wave attack to prevent skip dropping troops, must add for 4 sides attack
 			   EndIf
 			   Click($posX2, $posY2, $nbtroopPerSlot)
 			   $nbTroopsLeft -= $nbtroopPerSlot
 			Else
 			   $nbTroopsLeft -= $nbtroopPerSlot
 			EndIf
-			If _Sleep(50) Then Return
+			If _Sleep($icmbUnitDelay*10) Then Return
 		 Next
 	  EndIf
 EndFunc
@@ -170,28 +170,28 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
          ; ================================================================================?
          algorithmTH()
          if LauchTroop($eGiant, $nbSides, 1, 1, 1) Then
-            If _Sleep(400) Then Return
+            If _Sleep($icmbWaveDelay*100) Then Return
                EndIf
          if LauchTroop($eBarbarian, $nbSides, 1, 2) Then
-            If _Sleep(400) Then Return
+            If _Sleep($icmbWaveDelay*100) Then Return
                EndIf
          if LauchTroop($eArcher, $nbSides, 1, 2) Then
-            If _Sleep(100) Then Return
+            If _Sleep($icmbWaveDelay*100) Then Return
                EndIf
          If LauchTroop($eBarbarian, $nbSides, 2, 2) Then
-            If _Sleep(200) Then Return
+            If _Sleep($icmbWaveDelay*100) Then Return
             EndIf
          if LauchTroop($eWallbreaker, $nbSides, 1, 1, 1) Then
-            If _Sleep(50) Then Return
+            If _Sleep($icmbWaveDelay*100) Then Return
                EndIf
          If LauchTroop($eGoblin, $nbSides, 1, 2) Then
-            If _Sleep(50) Then Return
+            If _Sleep($icmbWaveDelay*100) Then Return
                EndIf
          If LauchTroop($eArcher, $nbSides, 2, 2) Then
-            If _Sleep(50) Then Return
+            If _Sleep($icmbWaveDelay*100) Then Return
                EndIf
          If LauchTroop($eGoblin, $nbSides, 2, 2) Then
-            If _Sleep(50) Then Return
+            If _Sleep($icmbWaveDelay*100) Then Return
                EndIf
          ; ================================================================================?
 

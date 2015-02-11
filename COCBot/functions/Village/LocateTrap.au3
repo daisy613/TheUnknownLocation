@@ -1,4 +1,5 @@
 Func LocateTrap()
+   If $ichkTrap = 1 Then
 	While 1
 		$MsgBox = MsgBox(1 + 262144, "Locate Trap", "Click OK then click on one of your traps", 0, $frmBot)
 		If $MsgBox = 1 Then
@@ -10,4 +11,5 @@ Func LocateTrap()
 		ExitLoop
 	WEnd
 	Click(1, 1)
+	EndIf
 EndFunc   ;==>LocateTrap

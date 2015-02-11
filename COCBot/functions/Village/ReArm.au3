@@ -1,5 +1,6 @@
 ;==>ReArm
 Func ReArm()
+   If $ichkTrap = 1 Then
 	While 1
 		If $TrapPos[0] = -1 Then
 			LocateTrap()
@@ -27,5 +28,6 @@ Func ReArm()
 			SetLog("Traps not found", $COLOR_RED)
 		EndIf
 		ExitLoop
-	WEnd
+	 WEnd
+	 EndIf
 EndFunc   ;==>ReArm
