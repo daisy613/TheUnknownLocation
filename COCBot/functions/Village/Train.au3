@@ -1,7 +1,7 @@
-;Uses the location of manually set Barracks to train specified troops
+ ;Uses the location of manually set Barracks to train specified troops
 
 ; Train the troops (Fill the barracks)
-
+#CS
 Func GetTrainPos($troopKind)
    Switch $troopKind
    Case $eBarbarian ; 261, 366: 0x39D8E0
@@ -31,6 +31,7 @@ Func TrainIt($troopKind, $howMuch = 1, $iSleep = 900)
 	  EndIf
    EndIf
 EndFunc
+#CE
 
 Func Train()
 	If $barrackPos[0][0] = "" Then
@@ -58,7 +59,6 @@ Func Train()
 		Local $TrainPos = _PixelSearch(155, 603, 694, 605, Hex(0x603818, 6), 5) ;Finds Train Troops button
 		If IsArray($TrainPos) = False Then
 			SetLog("Barrack " & $i + 1 & " is not available", $COLOR_RED)
-			If _Sleep(500) Then ExitLoop
 		Else
 			Click($TrainPos[0], $TrainPos[1]) ;Click Train Troops button
 			If _Sleep(800) Then ExitLoop
@@ -114,62 +114,108 @@ Func Train()
 					$CurGiant = GUICtrlRead($txtNumGiants)
 					$CurWB = GUICtrlRead($txtNumWallbreakers)
 					$CurArch = ($icmbTroopCap-(GUICtrlRead($txtNumGiants)*5)-(GUICtrlRead($txtNumWallbreakers)*2))*GUICtrlRead($txtArchers)/100
-					$CurArch = Round($CurArch)+1
+					$CurArch = Round($CurArch)
 					$CurBarb = ($icmbTroopCap-(GUICtrlRead($txtNumGiants)*5)-(GUICtrlRead($txtNumWallbreakers)*2))*GUICtrlRead($txtBarbarians)/100
-					$CurBarb = Round($CurBarb)+1
+					$CurBarb = Round($CurBarb)
 					$CurGoblin = ($icmbTroopCap-(GUICtrlRead($txtNumGiants)*5)-(GUICtrlRead($txtNumWallbreakers)*2))*GUICtrlRead($txtGoblins)/100
-					$CurGoblin = Round($CurGoblin)+1
-				EndIf
-				If GUICtrlRead($txtNumGiants) <> "0" And $CurGiant > 0 Then
-					_CaptureRegion()
-					If _ColorCheck(_GetPixelColor(475, 366), Hex(0x3DD8E0, 6), 20) And $CurGiant > 0 Then TrainIt($eGiant, Ceiling($CurGiant/($BarrackCount-$i)))
-				    If $CurGiant >= 6 Then
-					   $CurGiant -= Number(getOther(171 + 107 * 2, 278, "Trophy"))
-					   $ArmyComp += Number(getOther(171 + 107 * 2, 278, "Trophy"))*5
-				    Else
-					   $CurGiant -= Ceiling($CurGiant/($BarrackCount-$i))
-				    EndIf
-				EndIf
-				If GUICtrlRead($txtNumWallbreakers) <> "0" And $CurWB > 0 Then
-					_CaptureRegion()
-					If _ColorCheck(_GetPixelColor(688, 366), Hex(0x3AD8E0, 6), 20) And $CurWB > 0  Then TrainIt($eWallbreaker, Ceiling($CurWB/($BarrackCount-$i)))
-				    If $CurWB >= 6 Then
-					   $CurWB -= Number(getOther(171 + 107 * 4, 278, "Trophy"))
-					   $ArmyComp += Number(getOther(171 + 107 * 4, 278, "Trophy"))*2
-				    Else
-					   $CurWB -= Ceiling($CurWB/($BarrackCount-$i))
-				    EndIf
-				EndIf
-				If GUICtrlRead($txtGoblins) <> "0" And $CurGoblin > 0 Then
-					_CaptureRegion()
-					If _ColorCheck(_GetPixelColor(261, 366), Hex(0x39D8E0, 6), 20) And $CurGoblin > 0 Then TrainIt($eGoblin, Ceiling($CurGoblin/($BarrackCount-$i)))
-				    If $CurGoblin >= 6 Then
-					   $CurGoblin -= Number(getOther(171 + 107 * 3, 278, "Trophy"))
-					   $ArmyComp += Number(getOther(171 + 107 * 3, 278, "Trophy"))
-				    Else
-					   $CurGoblin -= Ceiling($CurGoblin/($BarrackCount-$i))
-				    EndIf
-				EndIf
-				If GUICtrlRead($txtArchers) <> "0" And $CurArch > 0 Then
-					_CaptureRegion()
-					If _ColorCheck(_GetPixelColor(261, 366), Hex(0x39D8E0, 6), 20) And $CurArch > 0 Then TrainIt($eArcher, Ceiling($CurArch/($BarrackCount-$i)))
-				    If $CurArch >= 6 Then
-					   $CurArch -= Number(getOther(171 + 107 * 1, 278, "Trophy"))
-					   $ArmyComp += Number(getOther(171 + 107 * 1, 278, "Trophy"))
-				    Else
-					   $CurArch -= Ceiling($CurArch/($BarrackCount-$i))
-				    EndIf
-			    EndIf
-				If GUICtrlRead($txtBarbarians) <> "0" And $CurBarb > 0 Then
-					_CaptureRegion()
-					If _ColorCheck(_GetPixelColor(369, 366), Hex(0x39D8E0, 6), 20) And $CurBarb > 0 Then TrainIt($eBarbarian, Ceiling($CurBarb/($BarrackCount-$i)))
-				    If $CurBarb >= 6 Then
-					   $CurBarb -= Number(getOther(171 + 107 * 0, 278, "Trophy"))
-					   $ArmyComp += Number(getOther(171 + 107 * 0, 278, "Trophy"))
-				    Else
-					   $CurBarb -= Ceiling($CurBarb/($BarrackCount-$i))
-				    EndIf
-				EndIf
+					$CurGoblin = Round($CurGoblin)
+				 EndIf
+				 Local $x
+				 If GUICtrlRead($txtNumGiants) <> "0" And ($CurGiant <> -1 Or $CurGiant > 0) Then
+					$x = Ceiling($CurGiant/($BarrackCount-$i))
+					 While _ColorCheck(_GetPixelColor(217, 297), Hex(0xF8AD20, 6), 20)
+						 If $CurGiant > 0 Then
+							 $CurGiant -= 1
+							 $ArmyComp += 5
+							 Click(432, 320) ;Giant
+							 If _Sleep(300) Then ExitLoop (2)
+							 _CaptureRegion()
+							 $x -= 1
+							 If $x <= 0 Or $CurGiant <= 0 Then
+								If _Sleep(1000) Then ExitLoop (2)
+							    ExitLoop
+							  EndIf
+						 Else
+							 $CurGiant = "-1"
+						 EndIf
+					 WEnd
+				  EndIf
+				  If GUICtrlRead($txtNumWallbreakers) <> "0" And ($CurWB <> -1 Or $CurWB > 0) Then
+					$x = Ceiling($CurWB/($BarrackCount-$i))
+					 While _ColorCheck(_GetPixelColor(648, 292), Hex(0xE0E4D0, 6), 20) = False And _ColorCheck(_GetPixelColor(217, 297), Hex(0xF8AD20, 6), 20)
+						 If $CurWB > 0 Then
+							 $CurWB -= 1
+							 $ArmyComp += 2
+							 Click(647, 320) ;WB
+							 If _Sleep(300) Then ExitLoop (2)
+							 _CaptureRegion()
+							 $x -= 1
+							 If $x <= 0 Or $CurWB <= 0 Then
+								If _Sleep(1000) Then ExitLoop (2)
+							    ExitLoop
+							  EndIf
+						 Else
+							 $CurWB = "-1"
+						 EndIf
+					 WEnd
+				  EndIf
+				  If GUICtrlRead($txtGoblins) <> "0" And ($CurGoblin <> -1 Or $CurGoblin > 0) Then
+					$x = Ceiling($CurGoblin/($BarrackCount-$i))
+					 While _ColorCheck(_GetPixelColor(509, 305), Hex(0xE0E4D0, 6), 20) = False And _ColorCheck(_GetPixelColor(217, 297), Hex(0xF8AD20, 6), 20)
+						 If $CurGoblin > 0 Then
+							 $CurGoblin -= 1
+							 $ArmyComp += 1
+							 Click(546, 320) ;Goblin
+							 If _Sleep(300) Then ExitLoop (2)
+							 _CaptureRegion()
+							 $x -= 1
+							 If $x <= 0 Or $CurGoblin <= 0 Then
+								If _Sleep(1000) Then ExitLoop (2)
+							    ExitLoop
+							  EndIf
+						 Else
+							 $CurGoblin = "-1"
+						 EndIf
+					 WEnd
+				  EndIf
+				  If GUICtrlRead($txtBarbarians) <> "0" And ($CurBarb <> -1 Or $CurBarb > 0) Then
+					$x = Ceiling($CurBarb/($BarrackCount-$i))
+					 While _ColorCheck(_GetPixelColor(329, 297), Hex(0xDC3F70, 6), 20) And ($CurBarb <> -1 Or $CurBarb > 0)
+						 If $CurBarb > 0 Then
+							 $CurBarb -= 1
+							 $ArmyComp += 1
+							 Click(220, 320) ;Barbarian
+							 If _Sleep(300) Then ExitLoop (2)
+							 _CaptureRegion()
+							 $x -= 1
+							 If $x <= 0 Or $CurBarb <= 0 Then
+								If _Sleep(1000) Then ExitLoop (2)
+							    ExitLoop
+							  EndIf
+						 Else
+							 $CurBarb = "-1"
+						 EndIf
+					 WEnd
+				 EndIf
+				 If GUICtrlRead($txtArchers) <> "0" And ($CurArch <> -1 Or $CurArch > 0) Then
+					$x = Ceiling($CurArch/($BarrackCount-$i))
+					 While _ColorCheck(_GetPixelColor(217, 297), Hex(0xF8AD20, 6), 20) And ($CurArch <> -1 Or $CurArch > 0)
+						 If $CurArch > 0 Then
+							 $CurArch -= 1
+							 $ArmyComp += 1
+							 Click(331, 320) ;Archer
+							 If _Sleep(300) Then ExitLoop (2)
+							 _CaptureRegion()
+							 $x -= 1
+							 If $x <= 0 Or $CurArch <= 0 Then
+								If _Sleep(1000) Then ExitLoop (2)
+							    ExitLoop
+							  EndIf
+						 Else
+							 $CurArch = "-1"
+						 EndIf
+					 WEnd
+				 EndIf
 			EndIf
 		 EndIf
 	    If _ColorCheck(_GetPixelColor(476, 211), Hex(0xE0E4D0, 6), 20) Then $ArmyComp = 0
