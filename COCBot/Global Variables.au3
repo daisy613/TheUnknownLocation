@@ -175,4 +175,4 @@ Global $collectorPos[17][2] ;Positions of each collectors
 
 Global $break = @ScriptDir & "\images\break.bmp"
 
-Global $GoldCount = 0, $ElixirCount = 0, $DarkCount = 0, $GemCount = 0, $BCount = 0
+Global $GoldCount = 0, $ElixirCount = 0, $DarkCount = 0, $GemCount = 0, $FreeBuilder = 0

@@ -2,7 +2,9 @@ Global $txtUse = 0
 
 Func UpgradeWall()
 	$ichkWalls = GUICtrlRead($chkWalls)
-	If $ichkWalls = 1 And WallCurrentStorage() Then
+	If $FreeBuilder = 0 Then
+	   SetLog("Don't have any free builders", $COLOR_RED)
+    ElseIf $ichkWalls = 1 And WallCurrentStorage() Then
 		While checkWall()
 			Click(1, 1) ; Click Away
 			If _Sleep(600) Then ExitLoop

@@ -4,7 +4,7 @@ Func VillageReport()
 
    SetLog("Village Report", $COLOR_GREEN)
 
-    Local $FreeBuilder = GetOther(324,23, "Builder")
+    $FreeBuilder = GetOther(324,23, "Builder")
     Setlog("Num. of Free Builders: " & $FreeBuilder, $COLOR_GREEN)
 
     SetLog("Opening Builder page to read Resources..", $COLOR_BLUE)

@@ -541,8 +541,9 @@ Func getChar(ByRef $x, $y)
 
 	;search for 'T'
 	$width = 6
+	$x -= 2
 	Local $c1 = Hex(0x707370, 6), $c2 = Hex(0xB7B8B7, 6), $c3 = Hex(0x969896, 6)
-	For $i = 1 To 3
+	For $i = 1 To 5
 		Local $pixel1[3] = [$x + 1, $y + 0, $c1], $pixel2[3] = [$x + 4, $y + 2, $c2], $pixel3[3] = [$x + 2, $y + 8, $c3]
 		If boolPixelSearch($pixel1, $pixel2, $pixel3, 2) Then
 			$x += $width
