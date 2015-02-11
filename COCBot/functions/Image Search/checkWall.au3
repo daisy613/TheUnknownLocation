@@ -2,7 +2,7 @@
 
 Global $Wall[8]
 For $i = 0 To 7
-   $Wall[$i] = @ScriptDir & "\images\Walls\" & $i+4 & ".bmp"
+   $Wall[$i] = @ScriptDir & "\images\Walls\" & $i+4 & ".png"
 Next
 
 Global $WallX = 0, $WallY = 0, $WallLoc = 0
