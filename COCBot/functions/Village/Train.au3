@@ -42,8 +42,8 @@ Func Train()
 	SetLog("Training Troops...", $COLOR_BLUE)
 
    Local $BarrackCount = 0
-   For $x = 0 To 3
-	   If $barrackPos[$x][0] <> "" Then $BarrackCount += 1
+   For $a = 0 To 3
+	   If $barrackPos[$a][0] <> "" Then $BarrackCount += 1
    Next
 	For $i = 0 To 3
 		If _Sleep(500) Then ExitLoop
@@ -121,7 +121,7 @@ Func Train()
 					$CurGoblin = Round($CurGoblin)
 				 EndIf
 				 Local $x
-				 If GUICtrlRead($txtNumGiants) <> "0" And ($CurGiant <> -1 Or $CurGiant > 0) Then
+				 If GUICtrlRead($txtNumGiants) <> "0" And ($CurGiant <> -1 And $CurGiant > 0) Then
 					_CaptureRegion()
 					$x = Ceiling($CurGiant/($BarrackCount-$i))
 					 While _ColorCheck(_GetPixelColor(217, 297), Hex(0xF8AD20, 6), 20)
@@ -141,7 +141,7 @@ Func Train()
 						 EndIf
 					 WEnd
 				  EndIf
-				  If GUICtrlRead($txtNumWallbreakers) <> "0" And ($CurWB <> -1 Or $CurWB > 0) Then
+				  If GUICtrlRead($txtNumWallbreakers) <> "0" And ($CurWB <> -1 And $CurWB > 0) Then
 					 _CaptureRegion()
 					$x = Ceiling($CurWB/($BarrackCount-$i))
 					 While _ColorCheck(_GetPixelColor(648, 292), Hex(0xE0E4D0, 6), 20) = False And _ColorCheck(_GetPixelColor(217, 297), Hex(0xF8AD20, 6), 20)
@@ -161,7 +161,7 @@ Func Train()
 						 EndIf
 					 WEnd
 				  EndIf
-				  If GUICtrlRead($txtGoblins) <> "0" And ($CurGoblin <> -1 Or $CurGoblin > 0) Then
+				  If GUICtrlRead($txtGoblins) <> "0" And ($CurGoblin <> -1 And $CurGoblin > 0) Then
 					 _CaptureRegion()
 					$x = Ceiling($CurGoblin/($BarrackCount-$i))
 					 While _ColorCheck(_GetPixelColor(509, 305), Hex(0xE0E4D0, 6), 20) = False And _ColorCheck(_GetPixelColor(217, 297), Hex(0xF8AD20, 6), 20)
@@ -181,7 +181,7 @@ Func Train()
 						 EndIf
 					 WEnd
 				  EndIf
-				 If GUICtrlRead($txtArchers) <> "0" And ($CurArch <> -1 Or $CurArch > 0) Then
+				 If GUICtrlRead($txtArchers) <> "0" And ($CurArch <> -1 And $CurArch > 0) Then
 					_CaptureRegion()
 					$x = Ceiling($CurArch/($BarrackCount-$i))
 					 While _ColorCheck(_GetPixelColor(217, 297), Hex(0xF8AD20, 6), 20)
@@ -201,7 +201,7 @@ Func Train()
 						 EndIf
 					 WEnd
 				 EndIf
-				  If GUICtrlRead($txtBarbarians) <> "0" And ($CurBarb <> -1 Or $CurBarb > 0) Then
+				  If GUICtrlRead($txtBarbarians) <> "0" And ($CurBarb <> -1 And $CurBarb > 0) Then
 					$x = Ceiling($CurBarb/($BarrackCount-$i))
 					_CaptureRegion()
 					 While _ColorCheck(_GetPixelColor(329, 297), Hex(0xDC3F70, 6), 20)
@@ -227,5 +227,5 @@ Func Train()
 		If _Sleep(500) Then ExitLoop
 		Click($TopLeftClient[0], $TopLeftClient[1], 2, 250); Click away twice with 250ms delay
 	 Next
-	SetLog("Training Troops Complete", $COLOR_BLUE)
+	SetLog("Training Troops Complete")
  EndFunc   ;==>Train
