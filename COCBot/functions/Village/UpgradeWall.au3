@@ -7,6 +7,7 @@ Func UpgradeWall()
 		  SetLog("Don't have any free builders", $COLOR_RED)
 	   Else
 		   While checkWall()
+			   If _Sleep(500) Then ExitLoop
 			   Click(1, 1) ; Click Away
 			   If _Sleep(600) Then ExitLoop
 			   Click($WallX, $WallY)
@@ -33,10 +34,10 @@ Func UpgradeWall()
 			   _CaptureRegion()
 			   If _ColorCheck(_GetPixelColor(472, 482), Hex(0xFFFFFF, 6), 20) Then
 				   Click(472, 482) ; Click Okay
-				   If _Sleep(3000) Then ExitLoop
+				   If _Sleep(2000) Then ExitLoop
 			   Else
 				   Click(506, 396) ; Click Okay
-				   If _Sleep(3000) Then ExitLoop
+				   If _Sleep(2000) Then ExitLoop
 			   EndIf
 			   Click(1, 1) ; Click Away
 			WEnd

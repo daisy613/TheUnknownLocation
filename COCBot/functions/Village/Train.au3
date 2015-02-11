@@ -122,17 +122,18 @@ Func Train()
 				 EndIf
 				 Local $x
 				 If GUICtrlRead($txtNumGiants) <> "0" And ($CurGiant <> -1 Or $CurGiant > 0) Then
+					_CaptureRegion()
 					$x = Ceiling($CurGiant/($BarrackCount-$i))
 					 While _ColorCheck(_GetPixelColor(217, 297), Hex(0xF8AD20, 6), 20)
 						 If $CurGiant > 0 Then
 							 $CurGiant -= 1
 							 $ArmyComp += 5
 							 Click(432, 320) ;Giant
-							 If _Sleep(300) Then ExitLoop (2)
+							 If _Sleep(300) Then ExitLoop
 							 _CaptureRegion()
 							 $x -= 1
 							 If $x <= 0 Or $CurGiant <= 0 Then
-								If _Sleep(1000) Then ExitLoop (2)
+								If _Sleep(1000) Then ExitLoop
 							    ExitLoop
 							  EndIf
 						 Else
@@ -141,17 +142,18 @@ Func Train()
 					 WEnd
 				  EndIf
 				  If GUICtrlRead($txtNumWallbreakers) <> "0" And ($CurWB <> -1 Or $CurWB > 0) Then
+					 _CaptureRegion()
 					$x = Ceiling($CurWB/($BarrackCount-$i))
 					 While _ColorCheck(_GetPixelColor(648, 292), Hex(0xE0E4D0, 6), 20) = False And _ColorCheck(_GetPixelColor(217, 297), Hex(0xF8AD20, 6), 20)
 						 If $CurWB > 0 Then
 							 $CurWB -= 1
 							 $ArmyComp += 2
 							 Click(647, 320) ;WB
-							 If _Sleep(300) Then ExitLoop (2)
+							 If _Sleep(300) Then ExitLoop
 							 _CaptureRegion()
 							 $x -= 1
 							 If $x <= 0 Or $CurWB <= 0 Then
-								If _Sleep(1000) Then ExitLoop (2)
+								If _Sleep(1000) Then ExitLoop
 							    ExitLoop
 							  EndIf
 						 Else
@@ -160,17 +162,18 @@ Func Train()
 					 WEnd
 				  EndIf
 				  If GUICtrlRead($txtGoblins) <> "0" And ($CurGoblin <> -1 Or $CurGoblin > 0) Then
+					 _CaptureRegion()
 					$x = Ceiling($CurGoblin/($BarrackCount-$i))
 					 While _ColorCheck(_GetPixelColor(509, 305), Hex(0xE0E4D0, 6), 20) = False And _ColorCheck(_GetPixelColor(217, 297), Hex(0xF8AD20, 6), 20)
 						 If $CurGoblin > 0 Then
 							 $CurGoblin -= 1
 							 $ArmyComp += 1
 							 Click(546, 320) ;Goblin
-							 If _Sleep(300) Then ExitLoop (2)
+							 If _Sleep(300) Then ExitLoop
 							 _CaptureRegion()
 							 $x -= 1
 							 If $x <= 0 Or $CurGoblin <= 0 Then
-								If _Sleep(1000) Then ExitLoop (2)
+								If _Sleep(1000) Then ExitLoop
 							    ExitLoop
 							  EndIf
 						 Else
@@ -178,41 +181,43 @@ Func Train()
 						 EndIf
 					 WEnd
 				  EndIf
-				  If GUICtrlRead($txtBarbarians) <> "0" And ($CurBarb <> -1 Or $CurBarb > 0) Then
-					$x = Ceiling($CurBarb/($BarrackCount-$i))
-					 While _ColorCheck(_GetPixelColor(329, 297), Hex(0xDC3F70, 6), 20) And ($CurBarb <> -1 Or $CurBarb > 0)
-						 If $CurBarb > 0 Then
-							 $CurBarb -= 1
-							 $ArmyComp += 1
-							 Click(220, 320) ;Barbarian
-							 If _Sleep(300) Then ExitLoop (2)
-							 _CaptureRegion()
-							 $x -= 1
-							 If $x <= 0 Or $CurBarb <= 0 Then
-								If _Sleep(1000) Then ExitLoop (2)
-							    ExitLoop
-							  EndIf
-						 Else
-							 $CurBarb = "-1"
-						 EndIf
-					 WEnd
-				 EndIf
 				 If GUICtrlRead($txtArchers) <> "0" And ($CurArch <> -1 Or $CurArch > 0) Then
+					_CaptureRegion()
 					$x = Ceiling($CurArch/($BarrackCount-$i))
-					 While _ColorCheck(_GetPixelColor(217, 297), Hex(0xF8AD20, 6), 20) And ($CurArch <> -1 Or $CurArch > 0)
+					 While _ColorCheck(_GetPixelColor(217, 297), Hex(0xF8AD20, 6), 20)
 						 If $CurArch > 0 Then
 							 $CurArch -= 1
 							 $ArmyComp += 1
 							 Click(331, 320) ;Archer
-							 If _Sleep(300) Then ExitLoop (2)
+							 If _Sleep(300) Then ExitLoop
 							 _CaptureRegion()
 							 $x -= 1
 							 If $x <= 0 Or $CurArch <= 0 Then
-								If _Sleep(1000) Then ExitLoop (2)
+								If _Sleep(1000) Then ExitLoop
 							    ExitLoop
 							  EndIf
 						 Else
 							 $CurArch = "-1"
+						 EndIf
+					 WEnd
+				 EndIf
+				  If GUICtrlRead($txtBarbarians) <> "0" And ($CurBarb <> -1 Or $CurBarb > 0) Then
+					$x = Ceiling($CurBarb/($BarrackCount-$i))
+					_CaptureRegion()
+					 While _ColorCheck(_GetPixelColor(329, 297), Hex(0xDC3F70, 6), 20)
+						 If $CurBarb > 0 Then
+							 $CurBarb -= 1
+							 $ArmyComp += 1
+							 Click(220, 320) ;Barbarian
+							 If _Sleep(300) Then ExitLoop
+							 _CaptureRegion()
+							 $x -= 1
+							 If $x <= 0 Or $CurBarb <= 0 Then
+								If _Sleep(1000) Then ExitLoop
+							    ExitLoop
+							  EndIf
+						 Else
+							 $CurBarb = "-1"
 						 EndIf
 					 WEnd
 				 EndIf
